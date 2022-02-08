@@ -14,11 +14,11 @@ sns.set()
 
 headers = ({'User-Agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'})
 
-cars_url = 'https://www.autoscout24.de/lst/mercedes-benz/gle-(alle)?desc=0&powertype=kw&search_id=1kq573tji4h&cy=D&ocs_listing=include&sort=price&ustate=N%2CU&atype=C'
+cars_url = 'https://www.autoscout24.de/lst/mercedes-benz/gle-(alle)?sort=price&desc=0&zip=&atype=C&ustate=N%2CU&powertype=kw&priceto=28000&ocs_listing=include&search_id=1mzom1wroxl'
 r = get(cars_url, headers=headers)
 page_html = BeautifulSoup(r.text, 'html.parser')
 
-car_containers = page_html.find_all('article', class_="cldt-summary-full-item css-1ypjwms")
+car_containers = page_html.find_all('article', class_="cldt-summary-full-item css-1dy5n47")
 
 firstcar = car_containers[0]
 
@@ -53,10 +53,10 @@ if price<limit:
 	if car_containers != []:
 		for container in car_containers:
 			def crawlcar():
-				schedule.every(30).seconds.do(crawcar)
+				schedule.every(30).seconds.do(crawcar)			
 
 def telegram_bot_sendtext(bot_message):
-    bot_token = '5064855251:AAEDwrCkLxIcjqMR97KHCzezhMw7hPeX3Wo'
+    bot_token = '5154812445:AAGpPuWzbkxcGTCIv_wJDa8EtAKnRm7Ug5Y'
     bot_chatID = '1820102470'
     send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
     response = requests.get(send_text)
